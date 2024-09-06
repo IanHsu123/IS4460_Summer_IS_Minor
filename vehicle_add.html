@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Vehicle - University of Utah Parking</title>
+    <link rel="stylesheet" href="{% static 'u_parking/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #BE0000;
+            color: #fff;
+            padding: 20px 0;
+            min-height: 70px;
+            border-bottom: #000000 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            margin-right: 20px;
+        }
+        #branding h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav {
+            float: right;
+        }
+        #main {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #BE0000;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #960000;
+        }
+        footer {
+            background: #BE0000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>University of Utah Parking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a style='color:white' href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="{% url 'admin' %}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container">
+            <h1>Add Vehicle</h1>
+            <form method="post" class="form">
+   
+                {% csrf_token %}
+                {{ form.as_p }}
+            
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>University of Utah Parking &copy; 2024</p>
+    </footer>
+</body>
+</html>

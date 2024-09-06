@@ -1,0 +1,45 @@
+<!-- vehicle_delete.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Vehicle - University of Utah Parking</title>
+    <link rel="stylesheet" href="{% static 'u_parking/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>University of Utah Parking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a style='color:white' href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="{% url 'admin' %}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container">
+            <h1>Delete Vehicle</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <p><strong>Driver First Name:</strong> {{ vehicle.driver.driver_first_name }}</p>
+                <p><strong>Driver Last Name:</strong> {{ vehicle.driver.driver_last_name }}</p>
+                <p><strong>Make:</strong> {{ vehicle.vehicle_make }}</p>
+                <p><strong>Model:</strong> {{ vehicle.model }}</p>
+                <p><strong>Color:</strong> {{ vehicle.color }}</p>
+                <p><strong>Year:</strong> {{ vehicle.year }}</p>
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>University of Utah Parking &copy; 2024</p>
+    </footer>
+</body>
+</html>

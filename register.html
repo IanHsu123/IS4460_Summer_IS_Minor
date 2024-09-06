@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - University of Utah Parking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #BE0000;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #000000 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        #main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            min-height: 400px;
+        }
+        footer {
+            background: #BE0000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label, input {
+            margin: 10px 0;
+            padding: 10px;
+        }
+        input[type="submit"] {
+            background: #333;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #555;
+        }
+        .login-link {
+            margin-top: 10px;
+            display: block;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>University of Utah Parking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a style='color:white' href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="{% url 'permits' %}">Permits</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container">
+            <h1>Register</h1>
+            <a style='color:rgb(0, 0, 0)' href="{% url 'login' %}">Already a driver? Login here.</a>
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password">
+                
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>University of Utah Parking &copy; 2024</p>
+    </footer>
+</body>
+</html>

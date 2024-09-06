@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - University of Utah Parking</title>
+    <link rel="stylesheet" href="{% static 'u_parking/styles.css' %}">
+    <style>
+        /* Additional styling for table */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #BE0000;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #000000 3px solid;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        header #branding .logo {
+            width: 100px; /* Adjust the size as needed */
+            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+        }
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        #main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            min-height: calc(100vh - 180px); /* Adjust based on header and footer height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .edit-link, .delete-link {
+            color: #007BFF;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .edit-link:hover, .delete-link:hover {
+            text-decoration: underline;
+        }
+
+        .form-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .form-container input, .form-container select, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>University of Utah Parking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a style='color:white' href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="{% url 'admin' %}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container">
+            <h1>Registered Permits</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Permit ID</th>
+                        <th>Permit Type</th>
+                        <th>Issue Date</th>
+                        <th>Expiration Date</th>
+                        <th>Vehicle</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for permit in permits %}
+                    <tr>
+                        <td>{{ permit.id }}</td>
+                        <td>{{ permit.type }}</td>
+                        <td>{{ permit.issue_date }}</td>
+                        <td>{{ permit.expiration_date }}</td>
+                        <td>{{ permit.vehicle }}</td>
+                        <td>
+                            <a class="edit-link" href="{% url 'permit_edit' permit.id %}">edit</a>
+                            <a class="delete-link" href="{% url 'permit_delete' permit.id %}">delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="form-container">
+                <h2>Create Permit</h2>
+                <form action="{% url 'create_permit' %}" method="POST">
+                    {% csrf_token %}
+                    <label for="permit_type">Permit Type</label>
+                    <input type="text" id="permit_type" name="permit_type" required>
+
+                    <label for="issue_date">Issue Date</label>
+                    <input type="date" id="issue_date" name="issue_date" required>
+
+                    <label for="expiration_date">Expiration Date</label>
+                    <input type="date" id="expiration_date" name="expiration_date" required>
+
+                    <label for="vehicle">Vehicle</label>
+                    <input type="text" id="vehicle" name="vehicle" required>
+
+                    <button type="submit">Create Permit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>University of Utah Parking &copy; 2024</p>
+    </footer>
+</body>
+</html>

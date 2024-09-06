@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Driver - University of Utah Parking</title>
+    <link rel="stylesheet" href="{% static 'u_parking/styles.css' %}">
+    <style>
+        /* Additional styling for form */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+
+        header {
+            background: #BE0000;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #000000 3px solid;
+        }
+
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px;
+        }
+
+
+        header #branding {
+            float: left;
+        }
+
+
+        header #branding h1 {
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+
+        header #branding .logo {
+            width: 100px; /* Adjust the size as needed */
+            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+        }
+
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+
+        #main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            min-height: calc(100vh - 180px); /* Adjust based on header and footer height */
+        }
+
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+
+        form input[type="text"], form select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+
+        form input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+
+        form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>University of Utah Parking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a style='color:white' href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="{% url 'admin' %}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container">
+            <h1>Edit Driver</h1>
+            <form method="POST" action="{% url 'driver_edit' driver.id %}">
+                {% csrf_token %}
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" value="{{ driver.driver_first_name }}" required>
+               
+                <label for="middle_name">Middle Name:</label>
+                <input type="text" id="middle_name" name="middle_name" value="{{ driver.driver_middle_name }}">
+               
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" value="{{ driver.driver_last_name }}" required>
+               
+                <label for="driver_type">Driver Type:</label>
+                <select id="driver_type" name="driver_type" required>
+                    <option value="Student" {% if driver.driver_type == 'Student' %}selected{% endif %}>Student</option>
+                    <option value="Staff" {% if driver.driver_type == 'Staff' %}selected{% endif %}>Staff</option>
+                    <!-- Add more options as needed -->
+                </select>
+               
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required>{{ driver.address }}</textarea>
+               
+                <input type="submit" value="Save Changes">
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>University of Utah Parking &copy; 2024</p>
+    </footer>
+</body>
+</html>

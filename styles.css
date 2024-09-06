@@ -1,0 +1,123 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #BE0000;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #000000 3px solid;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+}
+
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px;
+}
+
+header #branding {
+    float: left;
+}
+
+header #branding h1 {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header #branding .logo {
+    width: 100px; /* Adjust the size as needed */
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+#showcase {
+    min-height: 400px;
+    background: url('utah_mountains.jpeg') no-repeat center center/cover;
+    text-align: center;
+    color: #f4f0f0;
+}
+
+#showcase h1 {
+    margin-top: 100px;
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+#showcase p {
+    font-size: 20px;
+}
+
+.button {
+    display: inline-block;
+    color: #060505;
+    background: #cccccc;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #060606;
+}
+
+.admin-title {
+    text-align: center; /* Center align the Admin Panel title */
+}
+
+.admin-buttons {
+    text-align: center;
+    margin-top: 50px;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+    margin-top: 20px;
+}
+
+footer {
+    background: #BE0000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    bottom: 0;
+    width: 100%;
+}

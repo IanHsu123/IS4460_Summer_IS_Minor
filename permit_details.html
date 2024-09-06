@@ -1,0 +1,43 @@
+<!-- vehicle_details.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Vehicle - University of Utah Parking</title>
+    <link rel="stylesheet" href="{% static 'u_parking/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>University of Utah Parking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a style='color:white' href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="{% url 'admin' %}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container">
+            <h1>Details Page</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <p><strong>Permit ID:</strong> {{ permit.id }}</p>
+                <p><strong>Permit Type:</strong> {{ permit.type }}</p>
+                <p><strong>Issue Date:</strong> {{ permit.issue_date }}</p>
+                <p><strong>Expiration Date:</strong> {{ permit.expiration_date }}</p>
+                <p><strong>Vehicle:</strong> {{ permit.vehicle }}</p>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>University of Utah Parking &copy; 2024</p>
+    </footer>
+</body>
+</html>

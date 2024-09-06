@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - University of Utah Parking</title>
+    <link rel="stylesheet" href="{% static 'u_parking/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="{% static 'u_parking/utah_logo.png' %}" alt="University of Utah Logo" class="logo">
+                <h1>University of Utah Parking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home_page' %}">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container"> 
+            <h1 class="admin-title">Admin Panel</h1>
+            <div class="admin-buttons">
+                <a class="button" href="{% url 'vehicles' %}">Vehicles</a>
+                <a class="button" href="{% url 'permits' %}">Permits</a>
+                <a class="button" href="{% url 'drivers' %}">Drivers</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>University of Utah Parking &copy; 2024</p>
+    </footer>
+</body>
+</html>
